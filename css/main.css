@@ -1,0 +1,40 @@
+*{
+	font-family: 'Open Sans', sans-serif;
+}
+.jumbotron{
+	background-color: rgb(238,238,238);
+	background-color: rgba(238,238,238,0.9);
+}
+.bottom1{
+	margin-bottom: 5px;
+}
+.bottom2{
+	margin-bottom: 10px;
+}
+.bottom3{
+	margin-bottom: 15px;
+}
+.bottom4{
+	margin-bottom: 20px;
+}
+.bottom5{
+	margin-bottom: 25px;
+}
+.bottom10{
+	margin-bottom: 50px;
+}
+.btn:focus {
+  outline: none;
+}
+.no-focus:focus {
+  outline: none;
+}
+select{
+	width:auto;
+}
+hr{
+	border-top-color: rgb(0,0,0);
+}
+p{
+	font-size: 1.2em !important;
+}

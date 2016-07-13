@@ -1,0 +1,15 @@
+Order deny,allow
+Deny from all
+
+<Files "team_list_widget.php">
+    Allow from all
+</Files>
+<Files "archive_widget.php">
+    Allow from all
+</Files>
+<Files "edit_meet_widget.php">
+    Allow from all
+</Files>
+<Files "edit_meet_type_widget.php">
+    Allow from all
+</Files>
