@@ -43,16 +43,16 @@ foreach($events as $temp){
 		break;
 	}
 }
-if($_SESSION['rank'] == 0){
-	echo "You do not have enough permissions to perform this request";
-	die();
-}
 $f_name = "";
 if($_SESSION['rank'] >= 1){
 	foreach($_POST['swimmer_id'] as $u_name){
 		$f_name .= $u_name.".";
 	}
 }else{
+	if(count($_POST['swimmer_id']) > 1){
+		echo "Only captains can make relays...";
+		die();
+	}
 	$f_name = $_SESSION['id'];
 }
 $stmt = $mysqli->prepare("INSERT INTO timecards (name, stroke, length, event, time, created_by, meet_id, division, competes_with, relay_letter, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

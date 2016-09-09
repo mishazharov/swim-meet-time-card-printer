@@ -62,7 +62,7 @@
 	<div class="row bottom2">
 		<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
 			<div id="add_meet_widget_length">
-				<label class="radio-inline"><input type="radio" value="1" name="meter">Meter pool</label>
+				<label class="radio-inline"><input type="radio" value="1" name="meter" required>Meter pool</label>
 				<label class="radio-inline"><input type="radio" value="0" name="meter">Yard pool</label>
 			</div>
 		</div>

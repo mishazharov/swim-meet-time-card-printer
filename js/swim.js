@@ -36,6 +36,8 @@ function change_pass(){
 	
 	$.post( "change_pass.php", $('#change_pass_widget').serialize(),
 		function(data){
+			$("#change_pass_widget").removeClass("has-success");
+			$("#change_pass_widget").removeClass("has-error");
 			if(data==21){
 				window.location.replace("/home.php");
 			}else if(data==1){
@@ -59,6 +61,7 @@ function edit_user(ele){
 	argString+="&"+$(ele.form).find("input[name=id]").serialize();
 	$.post( "edit.php", argString,
 		function(data){
+			$(ele.form).removeClass('has-error');
 			if(data==1){
 				$.get("/includes/team_list_widget.php", 
 					function(data){
@@ -83,6 +86,7 @@ function delete_user(ele, d_or_a){
 	}
 	$.post(target, $(ele).serialize(),
 		function(data){
+			$(ele).removeClass('has-error');
 			if(data==1){
 				$.get("includes/team_list_widget.php", 
 					function(data){
@@ -98,6 +102,7 @@ function delete_user(ele, d_or_a){
 function restore_user(ele){
 	$.post("restore.php", $(ele).serialize(),
 		function(data){
+			$(ele).removeClass('has-error');
 			if(data==1){
 				$.get("includes/archive_widget.php", 
 					function(data){
@@ -113,6 +118,8 @@ function restore_user(ele){
 function add_email(email){
 	$.post("new_email.php", $(email).serialize(),
 		function(data){
+			$(email).removeClass("has-success");
+			$(email).removeClass("has-error");
 			if(data==21){
 				window.location.replace("/home.php");
 			}else if(data==1){
@@ -139,12 +146,14 @@ function add_meet(meet){
 			if(data==1){
 				$(meet).trigger('reset');
 				$(meet).addClass("has-success");
+				$(meet).removeClass("has-error");
 				$("#add_meet_widget_submit").prop('disabled', false);
 			}else if(data==4){
 				$("#add_meet_widget_length").addClass("has-error");
 				$("#add_meet_widget_submit").prop('disabled', false);
 			}else{
 				$(meet).addClass("has-error");
+				alert("Error: " +data);
 				$("#add_meet_widget_submit").prop('disabled', false);
 			}
 		}
@@ -205,6 +214,8 @@ function add_meet_type(type){
 	$("#meet_type_widget_submit").prop('disabled', true);
 	$.post("add_meet_events.php", $(type).serialize(),
 		function(data){
+			$(type).removeClass("has-error");
+			$(type).removeClass("has-success");
 			if(data==1){
 				$(type).trigger('reset');
 				$(type).addClass("has-success");
@@ -220,6 +231,8 @@ function add_meet_type(type){
 function reset_password(pass){
 	$.post("send_reset.php", $(pass).serialize(),
 		function(data){
+			$(pass).removeClass("has-success");
+			$(pass).removeClass("has-error");
 			if(data==1){
 				$(pass).trigger('reset');
 				$(pass).addClass("has-success");
@@ -238,6 +251,8 @@ function edit_meet_type(type){
 	$(".edit_meet_type_widget_submit").prop('disabled', true);
 	$.post("edit_meet_events.php", $(type).serialize(),
 		function(data){
+			$(type).removeClass("has-success");
+			$(type).removeClass("has-error");
 			if(data==1){
 				$(type).addClass("has-success");
 				$(".edit_meet_type_widget_submit").prop('disabled', false);
@@ -287,6 +302,7 @@ function edit_meet(meet){
 function delete_meet(id, button){
 	$.post("delete_meet.php", "id="+id,
 		function(data){
+			$(button.form).removeClass("has-error");
 			if(data==1){
 				$(".edit_meet_widget_submit").prop('disabled', false);
 				$(".edit_meet_widget_box").collapse('hide');
@@ -304,6 +320,7 @@ function delete_meet(id, button){
 function delete_meet_type(id, button){
 	$.post("delete_meet_type.php", "id="+id,
 		function(data){
+			$(button.form).removeClass("has-error");
 			if(data==1){
 				$(".edit_meet_type_widget_submit").prop('disabled', false);
 				$(".edit_meet_type_widget_box").collapse('hide');
@@ -357,6 +374,8 @@ function edit_timecard(button){
 	$(button).find(":submit").prop('disabled', true);
 	$.post("edit_timecard.php", $(button).serialize(),
 		function(data){
+			$(button).removeClass("has-success");
+			$(button).removeClass("has-error");
 			if(data==1){
 				$(button).find(":submit").prop('disabled', false);
 				$(button).addClass("has-success");
@@ -372,6 +391,7 @@ function delete_timecard(button){
 	$(button.form).find(":submit").prop('disabled', true);
 	$.post("delete_timecard.php", $(button.form).serialize(),
 		function(data){
+			$(button.form).removeClass("has-error");
 			if(data==1){
 				$(button.form).find(":submit").prop('disabled', false);
 				$(button.form).remove();
