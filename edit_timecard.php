@@ -33,7 +33,7 @@ $events = json_decode($text);
 foreach($events as $temp){
 	if($temp->event == $_POST['event']){
 		$stroke = $temp->stroke;
-		if(!isset($_POST['relay_letter']) && $stroke > 4){
+		if(!isset($_POST['relay_letter']) && is_relay($stroke)){
 			echo "Relay type not selected (ie. A, B, C)"; die();
 		}
 		if(isset($_POST['relay_letter'])){
@@ -48,15 +48,16 @@ foreach($events as $temp){
 					$_POST['relay_letter'] = 'C';
 					break;
 				default:
-					if($stroke > 4){
+					if(is_relay($stroke)){
 						echo "Relay type not selected (ie. A, B, C)";
 						die();
 					}
 			}
 		}
-		if($stroke < 4 && isset($_POST['relay_letter']))$_POST['relay_letter']='';
-		if($_SESSION['rank'] < 1 && $stroke > 4){ echo "Not enough permissions to do this: 1"; die();}
-		if($_SESSION['rank'] < 2 && ($temp->competes_with != $_SESSION['competes_with'] || $temp->division != $_SESSION['division'])){ echo "Not enough permissions to do this: 2"; die();}
+		if(!permission_captain($_SESSION['rank']) && is_relay($stroke)){ echo "Not enough permissions to do this: 1"; die();}
+		//If you are not a captain and you want to change a relay stroke, you cannot
+		if(!permission_manager($_SESSION['rank']) && ($temp->competes_with != $_SESSION['competes_with'] || $temp->division != $_SESSION['division'])){ echo "Not enough permissions to do this: 2"; die();}
+		//If you are not a manager and you want to change a stroke of someone not in your group, you cannot
 		$length = $temp->length;
 		$event = $temp->event;
 		$competes_with = $temp->competes_with;
@@ -64,17 +65,18 @@ foreach($events as $temp){
 		break;
 	}
 }
-if($_SESSION['rank'] == 0 && count($_POST['swimmer_id']) > 1){
+if(!permission_captain($_SESSION['rank']) && count($_POST['swimmer_id']) > 1){
+	//If you are not a captain and you want to change a relay, you can not. You can tell it's a relay because swimmer_id is an array with more than one index
 	echo "You do not have enough permissions to perform this request";
 	die();
 }
 $f_name = "";
-if($_SESSION['rank'] >= 1){
+if(permission_captain($_SESSION['rank'])){//If you are a captain and you want to change a relay you can
 	foreach($_POST['swimmer_id'] as $u_name){
 		$f_name .= $u_name.".";
 	}
 }else{
-	$f_name = $_SESSION['id'];
+	$f_name = $_SESSION['id'];//Otherwise your id is used
 }
 
 $stmt = $mysqli->prepare("UPDATE timecards SET name=?, stroke=?, length=?, event=?, time=?, created_by=?, division=?, competes_with=?, relay_letter=? WHERE id=?");

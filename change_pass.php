@@ -10,7 +10,7 @@ if(!(isset($_POST['old_pass']) && isset($_POST['new_pass']) && isset($_POST['con
 }
 require_once(dirname(__FILE__).'/includes/db_connect.php');
 if($_SESSION['rank'] >= 3 && ADMIN_AUTH){
-	$mysqli->select_db('ursula_main');
+	$mysqli->select_db(MAIN_DB);
 	$stmt = $mysqli->prepare("SELECT password FROM users WHERE link=?");
 	$id = htmlspecialchars($_SESSION['name']);
 }else{
@@ -43,23 +43,23 @@ if($_SESSION['rank'] >=3 && ADMIN_AUTH){
 	$stmt->execute();
 	$stmt->close();
 }
-$mysqli->select_db("ursula_swim");
-$stmt = $mysqli->prepare("UPDATE users SET password=? WHERE name=?");
-$stmt->bind_param("ss", $password, $_SESSION['name']);
+$mysqli->select_db(SWIM_DB);
+$stmt = $mysqli->prepare("UPDATE users SET password=? WHERE id=?");
+$stmt->bind_param("si", $password, $_SESSION['id']);
 $stmt->execute();
 $stmt->close();
 
 if($_SESSION['setup'] == 0){
-	$stmt = $mysqli->prepare("UPDATE users SET setup=1 WHERE name=?");
-	$stmt->bind_param("s", $_SESSION['name']);
+	$stmt = $mysqli->prepare("UPDATE users SET setup=1 WHERE id=?");
+	$stmt->bind_param("i", $_SESSION['id']);
 	$stmt->execute();
 	$stmt->close();
 	$_SESSION['setup']=1;
 	echo "1";
 }
 if($_SESSION['setup'] == 2){
-	$stmt = $mysqli->prepare("UPDATE users SET setup=3 WHERE name=?");
-	$stmt->bind_param("s", $_SESSION['name']);
+	$stmt = $mysqli->prepare("UPDATE users SET setup=3 WHERE id=?");
+	$stmt->bind_param("i", $_SESSION['id']);
 	$stmt->execute();
 	$_SESSION['setup']=3;
 	echo "2";

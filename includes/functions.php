@@ -83,4 +83,158 @@ function stroke($id){
 		return "Free relay";
 	}
 }
+function is_relay($id){
+	switch($id){
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+		return false;
+	case 5:
+	case 6:
+		return true;
+	}
+}
+function permission_captain($rank){
+	if($rank >= 1){
+		return true;
+	}
+	return false;
+}
+function permission_manager($rank){
+	if($rank >= 2){
+		return true;
+	}
+	return false;
+}
+function permission_admin($rank){
+	if($rank >= 3){
+		return true;
+	}
+	return false;
+}
+
+//If bulk timecard operations ever become a thing
+class SwimTimecard {
+	private $is_relay = false;
+	private $name = 0;//The id of the user
+	private $stroke = 0;
+	private $event = 0;
+	private $length = 0;
+	private $time = "";// The string which contains the swimmers time
+	private $created_by = 0;
+	private $deleted = 0;
+	private $meet_id = 0;
+	private $relay_letter = "";
+	private $division = 0;
+	private $competes_with = 0;
+	private $type = 0;
+	public function __construct(){
+		
+	}
+	
+	//Getters and setters below
+	public function getRelay(){
+		return $is_relay;
+	}
+	public function setName($nn){
+		if(is_numeric($nn)){
+			$name = $nn;
+		}
+	}
+	public function getName(){
+		return $name;
+	}
+	public function setStroke($nn){
+		if(is_numeric($nn)){
+			$stroke = $nn;
+			if(is_relay($stroke)){
+				$is_relay = true;
+			}
+		}
+	}
+	public function getStroke(){
+		return $stroke;
+	}
+	public function setEvent($nn){
+		if(is_numeric($nn)){
+			$event = $nn;
+		}
+	}
+	public function getEvent(){
+		return $event;
+	}
+	public function setLength($nn){
+		if(is_numeric($nn)){
+			$length = $nn;
+		}
+	}
+	public function getLength(){
+		return $length;
+	}
+	public function setTime($nn){
+		$time = $nn;
+	}
+	public function getTime(){
+		return $time;
+	}
+	public function setCreatedBy($nn){
+		if(is_numeric($nn)){
+			$created_by = $nn;
+		}
+	}
+	public function getCreatedBy(){
+		return $created_by;
+	}
+	public function setDeleted($nn){
+		if(is_numeric($nn)){
+			$deleted = $nn;
+		}
+	}
+	public function getDeleted(){
+		return $deleted;
+	}
+	public function setMeetId($nn){
+		if(is_numeric($nn)){
+			$meet_id = $nn;
+		}
+	}
+	public function getMeetId(){
+		return $meet_id;
+	}
+	public function setRelayLetter($nn){
+		if(getRelay()){
+			$relay_letter = $nn;
+		}
+	}
+	public function getRelayLetter(){
+		return $relay_letter;
+	}
+	public function setDivision($nn){
+		if(is_numeric($nn)){
+			$division = $nn;
+		}
+	}
+	public function getDivision(){
+		return $division;
+	}
+	public function setCompetesWith($nn){
+		if(is_numeric($nn)){
+			$competes_with = $nn;
+		}
+	}
+	public function getCompetesWith(){
+		return $competes_with;
+	}
+	public function setType($nn){
+		if(is_numeric($nn)){
+			$type = $nn;
+		}
+	}
+	public function getType(){
+		return $type;
+	}
+	//Other methods below
+}
 ?>

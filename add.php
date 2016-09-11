@@ -25,15 +25,7 @@ foreach($usernames as $username){
 	if(empty($username)){
 		continue;
 	}
-	$stmt = $mysqli->prepare("SELECT * FROM users WHERE name = ? AND deleted = 0");
-	$stmt->bind_param("s", $username);
-	$stmt->execute();
-	$stmt->store_result();
-	if($stmt->num_rows > 0){
-		echo "0";//Prevents duplicate entries
-		die();
-	}
-	$stmt->close();
+	
 	$stmt = $mysqli->prepare($sql);
 	$name = htmlspecialchars($username);
 	if($_POST['grade'] == 9 || $_POST['grade'] == 10){

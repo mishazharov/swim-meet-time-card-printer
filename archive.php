@@ -18,7 +18,7 @@ $var = htmlspecialchars($_POST['id'], ENT_QUOTES);
 $stmt->bind_param("i", $var);
 $stmt->execute();
 $stmt->bind_result($rank);
-if($rank > $_SESSION['rank']){
+if($rank > $_SESSION['rank']){//Prevents people from deleting admins etc. (ranks higher than you)
 	echo "3";
 	die();
 }
