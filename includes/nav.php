@@ -14,36 +14,36 @@
 					<ul class="nav navbar-nav">
 					<li <?php if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="home.php" || strtok(basename($_SERVER["REQUEST_URI"]), '?')=="index.php")echo "class='active'";?> ><a href='home.php'>Swim</a></li>
 					<?php
-						if(isset($_SESSION['rank']) && $_SESSION['rank'] >= 1){
+						if(isset($_SESSION['rank']) && permission_captain($_SESSION['rank'])){
 							if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="users.php"){
 								echo "<li class='active'><a href='users.php'>Users</a></li>";
 							}else{
 								echo "<li><a href='users.php'>Users</a></li>";
 							}
-							if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="view_archive.php" && $_SESSION['rank']>=2){
+							if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="view_archive.php" && permission_manager($_SESSION['rank'])){
 								echo "<li class='active'><a href='view_archive.php'>Archive</a></li>";
-							}else if($_SESSION['rank']>=2){
+							}else if(permission_manager($_SESSION['rank'])){
 								echo "<li><a href='view_archive.php'>Archive</a></li>";
 							}
-							if($_SESSION['rank']>=2){
+							if(permission_manager($_SESSION['rank'])){
 								echo "<li class='dropdown'>";
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meets<span class="caret"></span></a>';
 								echo "<ul class='dropdown-menu'>";
-								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="meets.php" && $_SESSION['rank']>=2){
-									echo "<li class='active'><a href='meets.php'>Add a meet</a></li>";
-								}else if($_SESSION['rank']>=2){
-									echo "<li><a href='meets.php'>Add a meet</a></li>";
+								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="meets.php" && permission_manager($_SESSION['rank'])){
+									echo "<li class='active'><a href='meets.php'>Add / Edit a meet</a></li>";
+								}else if(permission_manager($_SESSION['rank'])){
+									echo "<li><a href='meets.php'>Add / Edit a meet</a></li>";
 								}
-								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="meet_type.php" && $_SESSION['rank']>=2){
+								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="meet_type.php" && permission_manager($_SESSION['rank'])){
 									echo "<li class='active'><a href='meet_type.php'>Add meet events</a></li>";
-								}else if($_SESSION['rank']>=2){
+								}else if(permission_manager($_SESSION['rank'])){
 									echo "<li><a href='meet_type.php'>Add meet events</a></li>";
 								}
 								echo "</ul>";
 								echo "</li>";
-								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="print.php" && $_SESSION['rank']>=2){
+								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="print.php" && permission_manager($_SESSION['rank'])){
 									echo "<li class='active'><a href='print.php'>Print Timecards</a></li>";
-								}else if($_SESSION['rank']>=2){
+								}else if(permission_manager($_SESSION['rank'])){
 									echo "<li><a href='print.php'>Print Timecards</a></li>";
 								}
 							}

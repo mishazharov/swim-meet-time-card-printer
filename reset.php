@@ -40,12 +40,8 @@
 		<div class='container'>
 			<div class='jumbotron'>
 				<h2 class="text-center">Reset password</h2>
-				<div style="text-align:center;" class="row bottom3">
-					<a class="text-center" data-toggle="collapse" href="#reset_help">Help?</a>
-				</div>
-				<div id="reset_help" class="row bottom3 collapse">
-						<p class="text-left">Here you can reset your password. Just enter your username, click enter, and check your email. Unfortunately, if you have not previously logged in and added your email, this form cannot help you.</p>
-				</div>
+				<?php help("Here you can reset your password. Just enter your username, click enter, and check your email. Unfortunately, if you have not previously logged in and added your email, this form cannot help you.", false); ?>
+				
 				<form method="post" onsubmit="reset_password(this); return false;">
 				<?php
 				if(!isset($reset) && PASS_RESET){

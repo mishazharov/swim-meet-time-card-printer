@@ -2,23 +2,20 @@
 	<div class="row bottom4">
 			<h2 class="text-center">Add a team member</h2>
 	</div>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#add_widget_help">Help?</a>
-	</div>
-	<div id="add_widget_help" class="row bottom3 collapse">
-			<p class="text-left">Using this form you can add new members to this website. You must fill in the username and select the appropriate options such as grade, rank, etc. You can add multiple users by separating usernames with commas. Only usernames are required to add admins or managers.
-			You can only create users that have less privileges than you (Where: Swimmer < Captain < Manager < Admin). If you are a captain, you cannot add users outside of your age group / division.</p>
-	</div>
+	<?php
+	require_once( dirname(__FILE__).'/functions.php');
+	help("Using this form you can add new members to this website. You must fill in the username and select the appropriate options such as grade, rank, etc. You can add multiple users by separating usernames with commas. Only usernames are required to add admins or managers.
+			You can only create users that have less privileges than you (Where: Swimmer < Captain < Manager < Admin). If you are a captain, you cannot add users outside of your age group / division.", false);?>
 	<div class="row bottom4" id="add_widget_success" style="display:none;">
 		<div class="alert alert-success">
 			<a href="#" class="close" onclick="$('#add_widget_success').hide();" aria-label="close">&times;</a>
-			<strong>Success!</strong> Member added.
+			<strong>Success!</strong> Member(s) added.
 		</div>
 	</div>
 	<div class="row bottom4" id="add_widget_error" style="display:none;">
 		<div class="alert alert-danger">
 			<a href="#" class="close" onclick="$('#add_widget_error').hide();" aria-label="close">&times;</a>
-			<strong>Error!</strong> Member not added, make sure your data is correct, and try again later.
+			<strong>Error!</strong> Member(s) not added, make sure your data is correct, and try again later.
 		</div>
 	</div>
 	<div class="row">

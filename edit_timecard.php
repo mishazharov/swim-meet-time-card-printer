@@ -13,12 +13,16 @@ if(!isset($_POST['time'])){
 }else{	if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}|/", $_POST['time'])){		echo "Your time does not match the specified format of: Minutes:Seconds.Milliseconds";		die();	}}
 require_once(dirname(__FILE__).'/includes/db_connect.php');
 
-$stmt = $mysqli->prepare("SELECT type FROM meets WHERE deleted=0 AND id=?");
+$stmt = $mysqli->prepare("SELECT type, active FROM meets WHERE deleted=0 AND id=?");
 $stmt->bind_param("i", $_POST['meet_id']);
 $stmt->execute();
-$stmt->bind_result($type);
+$stmt->bind_result($type, $active);
 $stmt->fetch();
 $stmt->close();
+if($active != 1){
+	echo "This meet is no longer open for editing timecards.";
+	die();
+}
 //To get the meet type id
 
 $stmt = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted=0 AND id=?");

@@ -5,12 +5,7 @@
 			<h2>Add meet type</h2>
 		</div>
 	</div>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#meet_type_widget_help">Help?</a>
-	</div>
-	<div id="meet_type_widget_help" class="row bottom3 collapse">
-			<p class="text-left">Here you can add meet types (ie. A, B, Sprint). This will make a template for meet creation, insuring that swimmers will not sign up for events that are not present. Please add events in order so that they can be printed and sorted correctly.</p>
-	</div>
+	<?php help("Here you can add meet types (ie. A, B, Sprint). This will make a template for meet creation, insuring that swimmers will not sign up for events that are not present. Please add events in order so that they can be printed and sorted correctly.", false); ?>
 	<div class="row bottom2">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 			<input type="text" placeholder="Meet type name" name="name" class="form-control" required>

@@ -132,6 +132,7 @@ function add_email(email){
 				$(email).addClass("has-success");
 				$("#add_email_widget").slideUp(6000);
 			}else{
+				$("#change_email_error_msg").text(data);
 				$("#add_email_error").show();
 				$(email).addClass("has-error");
 			}
@@ -398,6 +399,24 @@ function delete_timecard(button){
 			}else{
 				$(button.form).addClass("has-error");
 				$(button.form).find(":submit").prop('disabled', false);
+			}
+		}
+	);
+}
+function toggle_meet(id, button){
+	$.post("toggle_meet.php", "id="+id,
+		function(data){
+			$(button.form).removeClass("has-error");
+			if(data==1){
+				$(".edit_meet_widget_submit").prop('disabled', false);
+				$(".edit_meet_widget_box").collapse('hide');
+				var replace1;
+				$.get("/includes/edit_meet_widget.php", function (data2){
+					replace1 = data2;
+					setTimeout(function(){$("#edit_meet_widget_whole").replaceWith(replace1);}, 1000);
+				});
+			}else{
+				$(button.form).addClass("has-error");
 			}
 		}
 	);

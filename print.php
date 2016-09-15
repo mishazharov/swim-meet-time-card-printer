@@ -1,4 +1,4 @@
-<?phpini_set('display_errors', 0);ini_set('display_startup_errors', 0);ini_set('log_errors', 1);ini_set("error_log", "error_log");error_reporting(E_ALL);
+<?php
 	require_once( dirname(__FILE__).'/includes/functions.php');
 	if(!(isset($_SESSION['name']) && isset($_SESSION['division']) && isset($_SESSION['competes_with']) && isset($_SESSION['rank']))){
 		header("HTTP/1.1 303 See Other");

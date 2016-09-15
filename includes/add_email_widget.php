@@ -1,4 +1,4 @@
-<div id="add_email_widget">	<h2 class="text-center bottom4">Email for password reset</h2>
+<div id="add_email_widget">	<h2 class="text-center bottom4">Email for password reset</h2>	<?php help("Enter an email that can be used to contact you, this email will be used as your login in the future!!!", true); ?>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="row bottom4" id="add_email_success" style="display:none;">
@@ -13,7 +13,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="alert alert-danger">
 						<a href="#" class="close" onclick="$('#add_email_error').hide();" aria-label="close">&times;</a>
-						<div id="change_pass_error_msg">
+						<div id="change_email_error_msg">
 							<strong>Error!</strong> Settings not changed, please try again later.
 						</div>
 					</div>

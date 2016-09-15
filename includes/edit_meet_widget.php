@@ -1,22 +1,19 @@
 <div id="edit_meet_widget_whole">
 	<div class="row">
 		<h2 class="text-center">Edit meets</h2>
-		<div style="text-align:center;" class="row bottom3">
-			<a class="text-center" data-toggle="collapse" href="#edit_meet_widget_help">Help?</a>
-		</div>
 	</div>
 	<div class="row">
-		<div id="edit_meet_widget_help" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row bottom3 collapse">
-			<p class="text-left">Here you can edit previously added meets. Click on a meet name to expand the form, submit the form to save the changes. Once the changes are saved, the page should refresh.
-			You can also delete meets. Unless a meet was made by mistake, please do not delete meets because it will also delete all the times and timecards associated with the meet.</p>
-		</div>
+		<?php 
+		require_once(dirname(__FILE__).'/functions.php');
+		help("Here you can edit previously added meets. Click on a meet name to expand the form, submit the form to save the changes. Once the changes are saved, the page should refresh.
+			You can also delete meets. Unless a meet was made by mistake, please do not delete meets because it will also delete all the times and timecards associated with the meet.",false);?>
 	</div>
 	<?php 
 	require_once(dirname(__FILE__).'/db_connect.php');
-	$stmt1 = $mysqli->prepare("SELECT id, name, type, date, length FROM meets WHERE deleted=0");
+	$stmt1 = $mysqli->prepare("SELECT id, name, type, date, length, active FROM meets WHERE deleted=0");
 	$stmt1->execute();
 	$stmt1->store_result();
-	$stmt1->bind_result($id, $name, $type, $date, $length);
+	$stmt1->bind_result($id, $name, $type, $date, $length, $active);
 	while($stmt1->fetch()){
 	$date = explode("-", $date);
 	ob_start();
@@ -95,8 +92,19 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-					<button type="submit" class="btn btn-primary edit_meet_widget_submit">Edit meet</button>
+					<button type="submit" class="btn btn-primary edit_meet_widget_submit">Save Changes</button>
 					<button onclick="if(confirm('This will delete the meet, and associated timecards and times. This cannot be undone.'))delete_meet(<?php echo "$id";?>, this)" type="button" class="btn btn-danger" id="edit_meet_widget_delete">Delete meet</button>
+					<?php
+					if($active == 1){
+					?>
+					<button onclick="toggle_meet(<?php echo "$id";?>, this)" type="button" class="btn btn-primary" id="toggle_meet_widget_delete">Disable signup</button>
+					<?php
+					} else {
+					?>
+					<button onclick="toggle_meet(<?php echo "$id";?>, this)" type="button" class="btn btn-primary" id="toggle_meet_widget_delete">Enable signup</button>
+					<?php
+					}
+					?>
 				</div>
 			</div>
 		</form>

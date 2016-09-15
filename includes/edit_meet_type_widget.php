@@ -1,12 +1,8 @@
 <div id="edit_meet_type_widget_whole">
 	<h2 class="text-center">Edit meet type</h2>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#edit_meet_type_widget_help">Help?</a>
-	</div>
-	<div id="edit_meet_type_widget_help" class="row bottom3 collapse">
-		<p class="text-left">Click on a meet type name in order to expand a form. You can change the event numbers, who can participate in events, delete events and insert new ones.</p>
-	</div>
 	<?php
+		require_once(dirname(__FILE__).'/functions.php');
+		help("Click on a meet type name in order to expand a form. You can change the event numbers, who can participate in events, delete events and insert new ones.", false);
 		require_once(dirname(__FILE__).'/db_connect.php');
 		$stmt = $mysqli->prepare("SELECT id, name, text FROM meet_events WHERE deleted=0");
 		$stmt->execute();

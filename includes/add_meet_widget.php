@@ -1,14 +1,10 @@
 <div class="row">
 	<h2 class="text-center">Add meet</h2>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#add_meet_widget_help">Help?</a>
-	</div>
 </div>
-<div class="row">
-	<div id="add_meet_widget_help" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row bottom3 collapse">
-		<p class="text-left">Here you can add a meet. This will let swimmers sign up for their events. You must enter the meet date, and you should also select the meet type so that swimmers do not choose events that are not available during the meet. Please select whether this meet is taking place in a yard or meter pool, this is so times can be automatically converted. The entry will archive itself after the meet is over.</p>
-	</div>
-</div>
+<?php
+    require_once(dirname(__FILE__).'/functions.php');
+	help("Here you can add a meet. This will let swimmers sign up for their events. You must enter the meet date, and you should also select the meet type so that swimmers do not choose events that are not available during the meet. Please select whether this meet is taking place in a yard or meter pool, this is so times can be automatically converted. The entry will archive itself after the meet is over.", false);
+?>
 <form method="post" onsubmit="add_meet(this);return false;">
 	<div class="row bottom2">
 		<div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-8 col-sm-12 col-xs-12">

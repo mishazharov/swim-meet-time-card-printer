@@ -1,14 +1,10 @@
 <div id="edit_timecard_widget_whole">
 	<h2 class="text-center">Edit/View <?php if($_SESSION['rank']==0)echo "your"; if($_SESSION['rank']==1)echo "your divisions"; if($_SESSION['rank']>=2)echo "all";?> timecards</h2>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#edit_timecard_widget_help">Help?</a>
-	</div>
-	<div id="edit_timecard_widget_help" class="row bottom3 collapse">
-		<p class="text-left">Here you can edit or delete timecards, if they have already been printed you will have to talk to your Captain in order to change something. These timecards are not arranged in order.</p>
-	</div>
 	<?php
+		require_once(dirname(__FILE__).'/functions.php');
+		help("Here you can edit or delete timecards, if they have already been printed you will have to talk to your Captain in order to change something. These timecards are not arranged in order.", false);
 		require_once(dirname(__FILE__).'/db_connect.php');
-		$stmt = $mysqli->prepare("SELECT name, type, date, length, id FROM meets WHERE deleted=0  AND date > CURDATE() ");
+		$stmt = $mysqli->prepare("SELECT name, type, date, length, id FROM meets WHERE deleted=0  AND date > CURDATE() AND active = 1");
 		$stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($name, $type, $date, $length, $id);

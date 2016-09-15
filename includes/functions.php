@@ -1,5 +1,9 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('log_errors', 1);
+ini_set("error_log", "error_log");
 
 define('URL', "#");//Url to home site in case this is not the main website
 define('SITE_NAME', "Swim Site");//For the nav bar etc.
@@ -33,6 +37,28 @@ function division_name($division){
 		case 2:
 			return "Senior";
 	}
+}
+$num_help_boxes = 1;
+function help($text, $show){
+	global $num_help_boxes;
+	?>
+	<div style="text-align:center;" class="row bottom3">
+		<a class="text-center" data-toggle="collapse" href="#help_<?php echo "$num_help_boxes";?>">Help?</a>
+	</div>
+	<div id="help_<?php echo "$num_help_boxes";?>" class="row bottom3 <?php echo "collapse "; if($show)echo "in";?>">
+		<?php
+		if($show){
+			echo '<p class="text-center">';
+		}else{
+			echo '<p class="text-left">';
+		}
+		echo $text; 
+		
+		?>
+		</p>
+	</div>
+	<?php
+	$num_help_boxes++;
 }
 function rank($rank){
 	switch($rank){
@@ -81,6 +107,24 @@ function stroke($id){
 		return "Medley relay";
 	case 6:
 		return "Free relay";
+	}
+}
+function stroke_name_timecard($id){
+	switch($id){
+	case 0:
+		return "Fly";
+	case 1:
+		return "Back";
+	case 2:
+		return "Breast";
+	case 3:
+		return "Free";
+	case 4:
+		return "I.M.";
+	case 5:
+		return "M.R.";
+	case 6:
+		return "F.R.";
 	}
 }
 function is_relay($id){

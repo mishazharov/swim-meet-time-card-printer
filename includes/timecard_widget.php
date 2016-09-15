@@ -1,14 +1,13 @@
 <div id="timecard_widget_whole">
 	<h2 class="text-center">Add a timecard</h2>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#timecard_widget_help">Help?</a>
-	</div>
-	<div id="timecard_widget_help" class="row bottom3 collapse">
-		<p class="text-left">In order to sign up for a meet, click on the meet you would like to sign up for, and fill in the form that appears. If the form submits successfully then the meets dialogue should turn green. If you would like to make a relay, ask your Captain to make a relay timecard for you, unfortunately that interface is limited to Captains right now.<?php if($_SESSION['rank'] > 0)echo " In order to make the relay dialogue interface appear, select a relay event first. If you have more than one relay, the fastest relay should be an \"A Relay\", the second fastest should be a \"B Relay\" and so forth.";?></p>
-	</div>
 	<?php
+	    $help_text = "In order to sign up for a meet, click on the meet you would like to sign up for, and fill in the form that appears. If the form submits successfully then the meets dialogue should turn green. If you would like to make a relay, ask your Captain to make a relay timecard for you, unfortunately that interface is limited to Captains right now.";
+		if(permission_captain($_SESSION['rank'])){
+			$help_text .= " In order to make the relay dialogue interface appear, select a relay event first. If you have more than one relay, the fastest relay should be an \"A Relay\", the second fastest should be a \"B Relay\" and so on.";
+		}
+		help($help_text, false);
 		require_once( dirname(__FILE__).'/db_connect.php');
-		$stmt = $mysqli->prepare("SELECT name, type, date, length, id FROM meets WHERE deleted=0 AND date > CURDATE()");
+		$stmt = $mysqli->prepare("SELECT name, type, date, length, id FROM meets WHERE deleted=0 AND date > CURDATE() AND active = 1");
 		$stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($name, $type, $date, $length, $id);

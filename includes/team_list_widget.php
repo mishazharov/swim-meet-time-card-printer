@@ -14,15 +14,10 @@
 			<h2 class='text-center'>Edit team Members<h2>
 		</div>
 	";
-	?>
-	<div style="text-align:center;" class="row bottom3">
-		<a class="text-center" data-toggle="collapse" href="#team_list_widget_help">Help?</a>
-	</div>
-	<div id="team_list_widget_help" class="row bottom3 collapse">
-			<p class="text-left">Here you can view team members and edit relevant information, captains will only be able to see and edit information from their division. Information is updated as soon as you change an option.
-			If there is an error updating the entry, the box should light up red, otherwise the table will update itself. Also, you can click on titles to collapse and show divisions, and you can click on usernames to display additional information.</p>
-	</div>
-	<?php
+	
+	help("Here you can view team members and edit relevant information, captains will only be able to see and edit information from their division. Information is updated as soon as you change an option.
+			If there is an error updating the entry, the box should light up red, otherwise the table will update itself. Also, you can click on titles to collapse and show divisions, and you can click on usernames to display additional information.", false);
+	
 	//Unknown swimmers
 	list_team(-1, -1, -1, $mysqli);
 	
