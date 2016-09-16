@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 bottom2">
 			<div class='form-group' style="display:block">
-				<input style="width:100%" type="text" class="form-control input-lg" name="name" id="add_widget_name" placeholder="First.Middle.Last,First.Middle.Last,..." required>
+				<input style="width:100%" type="text" class="form-control input-lg" name="name" id="add_widget_name" placeholder="First.Last,First.Last,First.Last,..." required>
 			</div>
 		</div>
 	</div>

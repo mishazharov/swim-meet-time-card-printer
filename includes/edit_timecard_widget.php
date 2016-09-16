@@ -146,7 +146,7 @@
 							</div>
 							<div class="bottom2 col-lg-3 col-md-4 col-sm-12 col-xs-12">
 								
-								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" class="form-control" placeholder="Entry time (blank for no time)" name="time">
+								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" title="Time: MM:SS.MS" class="form-control" placeholder="Entry time (blank for no time)" name="time">
 							</div>
 							<div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 text-center">
 								<div class="row">

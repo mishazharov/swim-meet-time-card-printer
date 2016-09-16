@@ -10,7 +10,7 @@ if(!(isset($_POST['swimmer_id']) && isset($_POST['event'])&& isset($_POST['meet_
 }
 if(!isset($_POST['time'])){
 	$_POST['time']="";
-}else{	if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}|/", $_POST['time'])){		echo "Your time does not match the specified format of: Minutes:Seconds.Milliseconds";		die();	}}
+}else{	if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}/", $_POST['time'])){		echo "Your time does not match the specified format of: Minutes:Seconds.Milliseconds";		die();	}}
 require_once(dirname(__FILE__).'/includes/db_connect.php');
 
 $stmt = $mysqli->prepare("SELECT type, active FROM meets WHERE deleted=0 AND id=?");

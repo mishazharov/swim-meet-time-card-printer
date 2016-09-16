@@ -8,7 +8,7 @@ if(!(isset($_POST['swimmer_id']) && isset($_POST['event']) && isset($_POST['meet
 	echo 'Broken request!';
 	die();
 }
-if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}|/", $_POST['time'])){
+if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}/", $_POST['time'])){
 	echo "Your time does not match the specified format of: Minutes:Seconds.Milliseconds";
 	die();
 }

@@ -22,7 +22,7 @@ $usernames = explode(",",$_POST['name']);
 $sql = "INSERT INTO users (name, division, competes_with, rank, password, grade) VALUES (?, ?, ?, ?, ?, ?)";
 foreach($usernames as $username){
 	
-	if(empty($username)){
+	if(empty($username) || count(explode(".", $username)) != 2){
 		continue;
 	}
 	
