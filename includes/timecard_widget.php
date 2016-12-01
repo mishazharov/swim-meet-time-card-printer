@@ -11,6 +11,14 @@
 		$stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($name, $type, $date, $length, $id);
+		?>
+		<div class="row bottom4" style="display:none;" id="add_timecard_widget_error">
+			<div class="alert alert-success">
+				<a href="#" class="close" onclick="$('#add_timecard_widget_error').hide();" aria-label="close">×</a>
+				<span>Success! Timecard submitted.</span>
+			</div>
+		</div>
+		<?php
 		while($stmt->fetch()){
 			ob_start();
 	?>

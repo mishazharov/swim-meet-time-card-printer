@@ -3,7 +3,7 @@
 error_reporting(0);
 require_once( dirname(__FILE__).'/includes/functions.php');
 setcookie("username", htmlspecialchars($_POST['username']), time()+360);
-if(!(isset($_POST['username']) && isset($_POST['password']))){
+if(!(isset($_POST['username']))){// && isset($_POST['password'])
 	header("HTTP/1.1 303 See Other");
 	header('Location: index.php?err=1');
 	die();
@@ -13,6 +13,7 @@ $var = $_POST['username'];
 if(filter_var($var, FILTER_VALIDATE_EMAIL)){//Checks if it should look for email or name
 	$stmt = $mysqli->prepare("SELECT name, password, division, competes_with, rank, id, setup FROM users WHERE email = ? AND deleted=0 AND setup <> 0");
 }else{
+	$auth_override = true;
 	$stmt = $mysqli->prepare("SELECT name, password, division, competes_with, rank, id, setup FROM users WHERE name = ? AND deleted=0 AND setup < 2");
 }
 
@@ -30,7 +31,7 @@ if($rank >= 3 && ADMIN_AUTH){//Admins are authenticated through the main site DB
 	$stmt->execute();
 	$stmt->bind_result($name, $password);
 	$stmt->fetch();
-	if(password_verify($_POST['password'], $password)){
+	if(($auth_override && isset($id)) || password_verify($_POST['password'], $password)){
 		header("HTTP/1.1 303 See Other");
 		header('Location: home.php');
 		$_SESSION['name'] = htmlspecialchars($name, ENT_QUOTES);
@@ -42,11 +43,15 @@ if($rank >= 3 && ADMIN_AUTH){//Admins are authenticated through the main site DB
 		die();
 	}else{
 		header("HTTP/1.1 303 See Other");
-		header('Location: index.php?err=1');
+		if(isset($_POST['password'])){
+			header('Location: index.php?err=1');
+		}else{
+			header('Location: registeru.php?err=1');
+		}
 		die();
 	}
 }
-if(password_verify($_POST['password'], $password)){
+if(($auth_override && isset($id)) || (isset($_POST['password']) && password_verify($_POST['password'], $password))){
 	header("HTTP/1.1 303 See Other");
 	header('Location: home.php');
 	$_SESSION['name'] = htmlspecialchars($name_student, ENT_QUOTES);
@@ -58,7 +63,11 @@ if(password_verify($_POST['password'], $password)){
 	die();
 }else{
 	header("HTTP/1.1 303 See Other");
-	header('Location: index.php?err=1');
+	if(!isset($_POST['password'])){
+		header('Location: registeru.php?err=1');
+	}else{
+		header('Location: index.php?err=1');
+	}
 	die();
 }
 ?>

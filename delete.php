@@ -26,9 +26,9 @@ if($rank > $_SESSION['rank']){
 $stmt->close();
 
 
-$stmt = $mysqli->prepare("UPDATE users SET deleted=2 WHERE deleted=0 AND id=?");//Deleted 2 = really deleted
+$stmt = $mysqli->prepare("DELETE FROM users WHERE id=?");//Deleted 2 = really deleted
 $var = htmlspecialchars($_POST['id'], ENT_QUOTES);
 $stmt->bind_param("i", $var);
-$stmt->execute();
+$stmt->execute();$stmt->close();$stmt = $mysqli->prepare("UPDATE timecards SET deleted=1 WHERE name REGEXP ?");$regex = timecard_contains_user($_POST['id']);$stmt->bind_param("s", $regex);$stmt->execute();
 echo "1";
 ?>

@@ -99,15 +99,24 @@
 									}
 									$stmt2->close();
 								?>
+								<div class="row">
+									<?php if(!empty($relay_letter)){?>
+									<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<label class="radio"><input required type="radio" <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==0)echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
+										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==1)echo "checked='checked' ";?> type="radio" value="1" name="relay_letter">B Relay</label>
+										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==2)echo "checked='checked' ";?> type="radio" name="relay_letter" value="2">C Relay</label>
+									</div>
+								<?php }?>
+								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 bottom2">
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<?php
-											if(!empty($relay_letter) && $_SESSION['rank'] < 1){
-												echo '<select disabled onchange="detect_relay(this)" name="event" class="form-control">';
+											if(!empty($relay_letter) && !permission_manager($_SESSION['rank'])){
+												echo '<select disabled onchange="detect_relay(this, false)" name="event" class="form-control">';
 											}else{
-												echo '<select onchange="detect_relay(this)" name="event" class="form-control">';
+												echo '<select onchange="detect_relay(this, false)" name="event" class="form-control">';
 											}
 											$stmt2 = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted = 0 AND id=?");
 											$stmt2->bind_param("i", $type);
@@ -133,15 +142,6 @@
 										?>
 										</select>
 									</div>
-								</div>
-								<div class="row">
-									<?php if(!empty($relay_letter)){?>
-									<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<label class="radio-inline"><input required type="radio" <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==0)echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
-										<label class="radio-inline"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==1)echo "checked='checked' ";?> type="radio" value="1" name="relay_letter">B Relay</label>
-										<label class="radio-inline"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==2)echo "checked='checked' ";?> type="radio" name="relay_letter" value="2">C Relay</label>
-									</div>
-									<?php }?>
 								</div>
 							</div>
 							<div class="bottom2 col-lg-3 col-md-4 col-sm-12 col-xs-12">

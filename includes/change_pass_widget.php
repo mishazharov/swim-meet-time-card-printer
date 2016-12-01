@@ -20,6 +20,9 @@
 			</div>
 		</div>
 	</div>
+	<?php
+	if($_SESSION['setup'] == 3){
+	?>
 	<div id="row">
 		<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 			<div class="form-group">
@@ -28,6 +31,9 @@
 			</div>
 		</div>
 	</div>
+	<?php
+	}
+	?>
 	<div id="row">
 		<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 			<div class="form-group">

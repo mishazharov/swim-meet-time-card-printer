@@ -40,7 +40,7 @@
 		<div class='container'>
 			<div class='jumbotron'>
 				<h2 class="text-center">Reset password</h2>
-				<?php help("Here you can reset your password. Just enter your username, click enter, and check your email. Unfortunately, if you have not previously logged in and added your email, this form cannot help you.", false); ?>
+				<?php help("Here you can reset your password. Just enter your email, click enter, and check your email. Unfortunately, if you have not previously logged in and added your email, this form cannot help you.", false); ?>
 				
 				<form method="post" onsubmit="reset_password(this); return false;">
 				<?php

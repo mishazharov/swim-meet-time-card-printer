@@ -57,7 +57,10 @@ foreach($usernames as $username){
 	$cost = [
 		'cost' => 12,
 	];
+	$name = strtolower($name);
+	$name = ucwords($name,".");
 	$password = password_hash($name, PASSWORD_DEFAULT, $cost);
+	
 	if(!($stmt->bind_param("siiisi", $name, $division, $competes_with, $rank, $password, $grade))){
 		echo "0";
 		die();

@@ -5,6 +5,22 @@ $(document).ready(function(){
 	$('.timecard_widget_select').trigger('change');
 });
 function add_user(){
+	var array = $("#add_widget_name").val().split(",");
+	var arrayLength = array.length;
+	for (var i = 0; i < arrayLength; i++) {
+		if(array[i] == ""){
+			continue;
+		}
+		var a2 = array[i].split(".");
+		if(a2.length != 2 && a2.length != 0){
+			
+			if(confirm("Please make sure all usernames only have one '.' and follow the format of 'FirstName.LastName' Some enteries will not be added, continue?")){
+				break;
+			}else{
+				return;
+			}
+		}
+	}
 	$.post( "add.php", $('#add_widget').serialize(),
 		function(data){
 			if(data==1){
@@ -340,12 +356,16 @@ function add_timecard(form){
 	$(form).find(":submit").prop('disabled', true);
 	$.post("add_timecard.php", $(form).serialize(),
 		function(data){
+			$("#add_timecard_widget_error").hide();
 			if(data==1){
 				$(form).find(":submit").prop('disabled', false);
 				$(form).addClass("has-success");
 				$(form).removeClass("has-error");
+				$("#add_timecard_widget_error span").children(0).text("Success! Timecard submitted.");
+				$("#add_timecard_widget_error").show();
 			}else{
 				alert(data);
+				$("#add_timecard_widget_error").hide();
 				$(form).removeClass("has-success");
 				$(form).addClass("has-error");
 				$(form).find(":submit").prop('disabled', false);
@@ -353,7 +373,7 @@ function add_timecard(form){
 		}
 	);
 }
-function detect_relay(selector){
+function detect_relay(selector, inline = true){
 	if(selector){
 		if($(selector).find("option:selected").text().indexOf('relay') > -1){
 			var cont = $(selector).parent().parent().parent().prev();
@@ -363,7 +383,11 @@ function detect_relay(selector){
 				cont.append(stuff);
 				cont.append(stuff);
 				cont.append(stuff);
-				cont.append('<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12"><label class="radio-inline"><input required type="radio" value="0" name="relay_letter">A Relay</label><label class="radio-inline"><input type="radio" value="1" name="relay_letter">B Relay</label><label class="radio-inline"><input type="radio" name="relay_letter" value="2">C Relay</label></div>');
+				if(inline){
+					cont.append('<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12"><label class="radio-inline"><input required type="radio" value="0" name="relay_letter">A Relay</label><label class="radio-inline"><input type="radio" value="1" name="relay_letter">B Relay</label><label class="radio-inline"><input type="radio" name="relay_letter" value="2">C Relay</label></div>');
+				}else{
+					cont.append('<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12"><label class="radio"><input required type="radio" value="0" name="relay_letter">A Relay</label><label class="radio"><input type="radio" value="1" name="relay_letter">B Relay</label><label class="radio"><input type="radio" name="relay_letter" value="2">C Relay</label></div>');
+				}
 			}
 		}else{
 			var cont = $(selector).parent().parent().parent().prev();
@@ -417,6 +441,18 @@ function toggle_meet(id, button){
 				});
 			}else{
 				$(button.form).addClass("has-error");
+			}
+		}
+	);
+}
+function first_login(elem){
+	$.post("sconfirm.php", $(elem.form).serialize(),
+		function(data){
+			$(elem.form).removeClass("has-error");
+			if(data==1){
+				$(elem.form).addClass("has-success");
+			}else{
+				$(elem.form).addClass("has-error");
 			}
 		}
 	);

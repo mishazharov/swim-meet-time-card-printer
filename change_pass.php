@@ -4,7 +4,7 @@ if(!(isset($_SESSION['name']) && isset($_SESSION['division']) && isset($_SESSION
 	echo '2';
 	die();
 }
-if(!(isset($_POST['old_pass']) && isset($_POST['new_pass']) && isset($_POST['confirm_pass']))){
+if($_SESSION['setup'] == 3 && !(isset($_POST['old_pass']) && isset($_POST['new_pass']) && isset($_POST['confirm_pass']))){
 	echo "3";
 	die();
 }
@@ -29,7 +29,7 @@ $stmt->bind_result($password);
 $stmt->fetch();
 $stmt->close();
 
-if(!password_verify($_POST['old_pass'], $password)){
+if($_SESSION['setup'] == 3 && !password_verify($_POST['old_pass'], $password)){
 	echo "7";
 	die();
 }

@@ -18,7 +18,7 @@ if(!$stmt->bind_param("si", $_POST['new_email'], $_SESSION['id'])){
 	die();
 }
 if(!$stmt->execute()){
-	echo "Database error 3, please report to Dev";
+	echo "Error 3: This email likely exists already, please chose a different one, or contact a coach.";
 	die();
 }
 $stmt->close();
@@ -36,5 +36,6 @@ if($_SESSION['setup'] == 0){
 	$_SESSION['setup']=2;
 	echo "1";
 }
+setcookie("username", htmlspecialchars($_POST['new_email']), time()+360);
 echo "1";
 ?>

@@ -26,7 +26,7 @@ require_once(dirname(__FILE__).'/includes/functions.php');
 				<div class="row bottom4">
 					<div class="col-lg-12">
 					<?php
-						if($_SESSION['setup']!=3 && permission_admin($_SESSION['rank'])){
+						if($_SESSION['setup']!=3 && !permission_admin($_SESSION['rank'])){
 							include( dirname(__FILE__).'/includes/settings_confirmation_widget.php');
 						}
 					?>

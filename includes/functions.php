@@ -8,11 +8,19 @@ ini_set("error_log", "error_log");
 define('URL', "#");//Url to home site in case this is not the main website
 define('SITE_NAME', "Swim Site");//For the nav bar etc.
 define('TIMEZONE', "America/Toronto");
-
-if(isset($_SESSION['setup']) && $_SESSION['setup'] != 3 && (strtok(basename($_SERVER["REQUEST_URI"]), '?')!="settings.php") && (strtok(basename($_SERVER["REQUEST_URI"]), '?')!="logout.php") && (strtok(basename($_SERVER["REQUEST_URI"]), '?')!="change_pass.php") && (strtok(basename($_SERVER["REQUEST_URI"]), '?')!="new_email.php")){
-	header("HTTP/1.1 303 See Other");
-	header('Location: settings.php');//Redirects people in case they have not completed setup
-	die();
+$whitelist = array("settings.php", "logout.php", "change_pass.php", "new_email.php", "sconfirm.php");
+if(isset($_SESSION['setup']) && $_SESSION['setup'] != 3){
+	foreach($whitelist as $a){
+		if(strtok(basename($_SERVER["REQUEST_URI"]), '?')==$a){
+			$allowed = true;
+			break;
+		}
+	}
+	if(isset($allowed) && !$allowed){
+		header("HTTP/1.1 303 See Other");
+		header('Location: settings.php');//Redirects people in case they have not completed setup
+		die();
+	}
 }
 date_default_timezone_set(TIMEZONE);//Sets the timezone
 function division($grade){//DOES NOT WORK FOR OPEN SWIMMERS!!!!
@@ -158,7 +166,9 @@ function permission_admin($rank){
 	}
 	return false;
 }
-
+function timecard_contains_user($id1){
+	return "(\.|^)".$id1."(\.|$)";
+}
 //If bulk timecard operations ever become a thing
 class SwimTimecard {
 	private $is_relay = false;
