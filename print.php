@@ -26,7 +26,7 @@
 				$stmt->execute();
 				$stmt->bind_result($name, $id);
 				while($stmt->fetch()){
-					echo "<div class='row bottom2'><div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'><h4 class='text-center'><a href='?id=$id'>$name</a></h4></div></div>";
+					echo "<div class='row bottom2'><div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'><h4 class='text-center'><a href='print2.php?id=$id'>$name</a></h4></div></div>";
 				}
 				$stmt->close();
 				?>

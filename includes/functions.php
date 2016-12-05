@@ -16,7 +16,7 @@ if(isset($_SESSION['setup']) && $_SESSION['setup'] != 3){
 			break;
 		}
 	}
-	if(isset($allowed) && !$allowed){
+	if(!isset($allowed)){
 		header("HTTP/1.1 303 See Other");
 		header('Location: settings.php');//Redirects people in case they have not completed setup
 		die();

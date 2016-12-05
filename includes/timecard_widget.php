@@ -119,7 +119,7 @@
 						<div class="row bottom2">
 							<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
 								<div class="row">
-									<input type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" title="Time: MM:SS.MS" class="form-control" placeholder="Entry time (blank for no time)" name="time">
+									<input type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" title="Time: MM:SS.MS" class="form-control" placeholder="Entry time as MM:SS.MS (blank for no time)" name="time">
 								</div>
 							</div>
 						</div>

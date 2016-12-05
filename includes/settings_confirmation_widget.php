@@ -41,14 +41,24 @@ $stmt->fetch();
 				</div>
 			</div>
 		</div>
-		<div id="row">
-			<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+		<div id="row bottom2">
+			<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 bottom3">
 				<div class="form-group">
 					<label for="confirm_pass">Who will you compete with?</label>
 					<select onchange="first_login(this)" name="competes_with" class="form-control" id="settings_confirmation_year_competes_with">
 						<option <?php if($cw==0)echo "selected ";?>selected="" value="0">Girls</option>
 						<option <?php if($cw==1)echo "selected ";?>value="1">Boys</option>
 					</select>
+				</div>
+			</div>
+		</div>
+		<div id="row">
+			<div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="confirm_pass">Check this if you are an open swimmer: </label>
+					<div class="checkbox">
+						<label><input name="open" onchange="first_login(this)" type="checkbox" value="1"></label>
+					</div>
 				</div>
 			</div>
 		</div>
