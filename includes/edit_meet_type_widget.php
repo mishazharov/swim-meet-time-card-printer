@@ -6,6 +6,7 @@
 		require_once(dirname(__FILE__).'/db_connect.php');
 		$stmt = $mysqli->prepare("SELECT id, name, text FROM meet_events WHERE deleted=0");
 		$stmt->execute();
+		$stmt->store_result();
 		$stmt->bind_result($id, $name, $text);
 		while($stmt->fetch()){
 

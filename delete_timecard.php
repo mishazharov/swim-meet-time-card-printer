@@ -4,7 +4,7 @@ if(!(isset($_SESSION['name']) && isset($_SESSION['division']) && isset($_SESSION
 	echo 'You must be logged in...';
 	die();
 }
-if(!(isset($_POST['swimmer_id']) && isset($_POST['event'])&& isset($_POST['time'])&& isset($_POST['meet_id']) && isset($_POST['timecard_id']))){
+if(!isset($_POST['timecard_id'])){
 	echo 'Broken Request.';
 	die();
 }
@@ -16,15 +16,14 @@ $stmt->bind_result($type);
 $stmt->fetch();
 $stmt->close();
 //To get the meet type id
-
 $stmt = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted=0 AND id=?");
 $stmt->bind_param("i", $type);
 $stmt->execute();
+$stmt->store_result();
 $stmt->bind_result($text);
 $stmt->fetch();
 $stmt->close();
 //Get the meet events info
-
 $events = json_decode($text);
 foreach($events as $temp){//Checks which the event on the timecard that is being deleted can be deleted by the user
 	if($temp->event == $_POST['event']){
@@ -38,7 +37,7 @@ foreach($events as $temp){//Checks which the event on the timecard that is being
 		break;
 	}
 }
-if($_SESSION['rank'] == 0 && $_POST['swimmer_id'].length > 1){
+if($_SESSION['rank'] == 0 && isset($_POST['relay_letter'])){
 	echo "You do not have enough permissions to perform this request";
 	die();
 }
@@ -59,7 +58,7 @@ if($_SESSION['rank'] < 2){//If this is not an admin, more checks are done to see
 	$stmt->close();
 	$name = explode(".", $name);
 	foreach($name as $temp){
-		if(($temp == $_SESSION['id'] && empty($relay_letter)) || ($_SESSION['rank'] == 1 && $competes_with == $_SESSION['competes_with'] && $division == $_SESSION['division'])){
+		if(($temp == $_SESSION['id'] && empty($relay_letter)) || (permission_captain($_SESSION['rank']) && $competes_with == $_SESSION['competes_with'] && $division == $_SESSION['division'])){
 			$found = true;
 			break;
 		}

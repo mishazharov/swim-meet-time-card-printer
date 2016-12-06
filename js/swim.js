@@ -74,7 +74,7 @@ function change_pass(){
 }
 function edit_user(ele){
 	var argString = $(ele).serialize();
-	argString+="&"+$(ele.form).find("input[name=id]").serialize();
+	argString+="&"+$(ele.form).serialize();
 	$.post( "edit.php", argString,
 		function(data){
 			$(ele.form).removeClass('has-error');

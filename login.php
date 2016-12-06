@@ -40,7 +40,7 @@ if($rank >= 3 && ADMIN_AUTH){//Admins are authenticated through the main site DB
 	$stmt->execute();
 	$stmt->bind_result($name, $password);
 	$stmt->fetch();
-	if(($auth_override && isset($id) && $setup < 0) || password_verify($_POST['password'], $password)){
+	if((isset($auth_override) && isset($id) && $setup < 0) || password_verify($_POST['password'], $password)){
 		
 		$_SESSION['name'] = htmlspecialchars($name, ENT_QUOTES);
 		$_SESSION['division'] = htmlspecialchars($division, ENT_QUOTES);
@@ -61,7 +61,7 @@ if($rank >= 3 && ADMIN_AUTH){//Admins are authenticated through the main site DB
 		die();
 	}
 }
-if(($auth_override && $setup < 3  && isset($id)) || ((isset($_POST['password']) && password_verify($_POST['password'], $password)))){
+if((isset($auth_override) && $setup < 3  && isset($id)) || ((isset($_POST['password']) && password_verify($_POST['password'], $password)))){
 	
 	$_SESSION['name'] = htmlspecialchars($name_student, ENT_QUOTES);
 	$_SESSION['division'] = htmlspecialchars($division, ENT_QUOTES);

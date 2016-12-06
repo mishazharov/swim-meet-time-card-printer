@@ -42,19 +42,22 @@
 			<div id="edit_timecard_widget_form_<?php echo $id;?>" class="row collapse">
 				<h4 class="bottom3 text-center">Edit timecards for <?php echo $name;?></h4>
 				<?php
-				if($_SESSION['rank'] >= 2){
+				if(permission_manager($_SESSION['rank'])){
 					$stmt1 = $mysqli->prepare("SELECT id, name, stroke, length, event, time, relay_letter FROM timecards WHERE deleted=0 AND meet_id=?");
 					$stmt1->bind_param("i", $id);
-				}else{
+				}else if(permission_captain($_SESSION['rank'])){
 					$stmt1 = $mysqli->prepare("SELECT id, name, stroke, length, event, time, relay_letter FROM timecards WHERE deleted=0 AND meet_id=? AND division=? AND competes_with=?");
 					$stmt1->bind_param("iii", $id, $_SESSION['division'], $_SESSION['competes_with']);
+				}else{
+					$stmt1 = $mysqli->prepare("SELECT id, name, stroke, length, event, time, relay_letter FROM timecards WHERE deleted=0 AND meet_id=? AND name REGEXP ?");
+					$stmt1->bind_param("is", $id, timecard_contains_user($_SESSION['id']));
 				}
 				$stmt1->execute();
 				$stmt1->store_result();
 				$stmt1->bind_result($timecard_id, $timecard_name, $timecard_stroke, $timecard_length, $timecard_event, $timecard_time, $relay_letter);
 				
 				while($stmt1->fetch()){
-					
+					$timecard_time = time_to_client($timecard_time);
 					$timecard_name=explode(".", $timecard_name);
 					if($_SESSION['rank'] == 0){
 						foreach($timecard_name as $simple_id){
@@ -121,6 +124,7 @@
 											$stmt2 = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted = 0 AND id=?");
 											$stmt2->bind_param("i", $type);
 											$stmt2->execute();
+											$stmt2->store_result();
 											$stmt2->bind_result($text);
 											$stmt2->fetch();
 											$stmt2->close();
@@ -146,7 +150,7 @@
 							</div>
 							<div class="bottom2 col-lg-3 col-md-4 col-sm-12 col-xs-12">
 								
-								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" title="Time: MM:SS.MS" class="form-control" placeholder="Entry time (blank for no time)" name="time">
+								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human();?>" class="form-control" placeholder="Entry time as <?php echo timecard_regex_human();?> (blank for no time)" name="time">
 							</div>
 							<div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 text-center">
 								<div class="row">

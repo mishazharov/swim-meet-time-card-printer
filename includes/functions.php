@@ -169,6 +169,22 @@ function permission_admin($rank){
 function timecard_contains_user($id1){
 	return "(\.|^)".$id1."(\.|$)";
 }
+function timecard_regex_client(){
+	return "[0-9]{2}.[0-9]{2}\.[0-9]{2}|";
+}
+function time_to_client($time){
+	return str_replace(":", ".", (String)$time);
+}
+function timecard_regex_human(){
+	return "MM.SS.MS";
+}
+function timecard_regex_server(){
+	return "/[0-9]{2}.[0-9]{2}\.[0-9]{2}/";
+}
+function convert_timecard_client_to_server($time){
+	//takes "00.00.00" and turns it into "00:00.00"
+	return preg_replace('/[.]/', ':', $time, 1);
+}
 //If bulk timecard operations ever become a thing
 class SwimTimecard {
 	private $is_relay = false;

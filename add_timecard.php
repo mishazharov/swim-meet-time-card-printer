@@ -8,14 +8,16 @@ if(!(isset($_POST['swimmer_id']) && isset($_POST['event']) && isset($_POST['meet
 	echo 'Broken request!';
 	die();
 }
-if(!preg_match("/[0-9]{2}:[0-9]{2}\.[0-9]{2}/", $_POST['time']) && $_POST['time'] != ""){
-	echo "Your time does not match the specified format of: Minutes:Seconds.Milliseconds";
+if(!preg_match(timecard_regex_server(), $_POST['time']) && $_POST['time'] != ""){
+	echo "Your time does not match the specified format of: ".timecard_regex_human();
 	die();
 }
+$_POST['time'] = convert_timecard_client_to_server($_POST['time']);
 require_once(dirname(__FILE__).'/includes/db_connect.php');
 $stmt = $mysqli->prepare("SELECT type, active FROM meets WHERE deleted=0 AND id=?");
 $stmt->bind_param("i", $_POST['meet_id']);
 $stmt->execute();
+$stmt->store_result();
 $stmt->bind_result($type, $active);
 $stmt->fetch();
 $stmt->close();
@@ -28,6 +30,7 @@ if($active != 1){
 $stmt = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted=0 AND id=?");
 $stmt->bind_param("i", $type);
 $stmt->execute();
+$stmt->store_result();
 $stmt->bind_result($text);
 $stmt->fetch();
 $stmt->close();
@@ -59,7 +62,7 @@ if($_SESSION['rank'] >= 1){
 	}
 	$f_name = $_SESSION['id'];
 }
-$stmt = $mysqli->prepare("INSERT INTO timecards (name, stroke, length, event, time, created_by, meet_id, division, competes_with, relay_letter, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("REPLACE INTO timecards (name, stroke, length, event, time, created_by, meet_id, division, competes_with, relay_letter, type, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
 if(!isset($_POST['relay_letter'])){$_POST['relay_letter']='';}
 if($_POST['relay_letter']!=''){
 	switch($_POST['relay_letter']){

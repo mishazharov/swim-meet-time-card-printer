@@ -89,6 +89,7 @@
 											$stmt1 = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted = 0 AND id=?");
 											$stmt1->bind_param("i", $type);
 											$stmt1->execute();
+											$stmt1->store_result();
 											$stmt1->bind_result($text);
 											$stmt1->fetch();
 											$stmt1->close();
@@ -119,7 +120,7 @@
 						<div class="row bottom2">
 							<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
 								<div class="row">
-									<input type="text" pattern="[0-9]{2}:[0-9]{2}\.[0-9]{2}|" title="Time: MM:SS.MS" class="form-control" placeholder="Entry time as MM:SS.MS (blank for no time)" name="time">
+									<input type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human()?>" class="form-control" placeholder="Entry time as <?php echo timecard_regex_human();?> (blank for no time)" name="time">
 								</div>
 							</div>
 						</div>

@@ -22,7 +22,7 @@
 				</div>
 				<?php
 				require_once( dirname(__FILE__).'/includes/db_connect.php');
-				$stmt = $mysqli->prepare("SELECT name, id FROM meets WHERE deleted = 0 AND date > CURDATE()");
+				$stmt = $mysqli->prepare("SELECT name, id FROM meets WHERE deleted = 0 AND date > CURDATE()");				$stmt->store_result();
 				$stmt->execute();
 				$stmt->bind_result($name, $id);
 				while($stmt->fetch()){

@@ -23,6 +23,7 @@ $stmt->close();
 $stmt = $mysqli->prepare("SELECT text FROM meet_events WHERE deleted=0 AND id=?");
 $stmt->bind_param('i', $type);
 $stmt->execute();
+$stmt->store_result();
 $stmt->bind_result($text);
 $stmt->fetch();
 $stmt->close();
