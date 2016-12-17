@@ -6,6 +6,7 @@ $stmt->bind_param("i", $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($grade, $cw);
 $stmt->fetch();
+$stmt->store_result();
 ?>
 <div class="row" style="text-align:center">
 	<form method="post" class="form-inline">
@@ -64,3 +65,6 @@ $stmt->fetch();
 		</div>
 	</form>
 </div>
+<?php
+$stmt->close();
+?>

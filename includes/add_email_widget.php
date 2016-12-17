@@ -22,8 +22,8 @@
 			<form method="post" onsubmit="add_email(this); return false;">
 				<div class="row bottom2">
 					<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-sx-12">
-						<label for="new_email">New email:</label>						<?php 						$stmt111 = $mysqli->prepare("SELECT email FROM users WHERE id=? AND deleted = 0");						$stmt111->bind_param("i", $_SESSION['id']);						$stmt111->execute();						$stmt111->bind_result($email);						$stmt111->fetch();						?>
-						<input name="new_email" value="<?php echo $email;?>" type="text" class="form-control" id="new_email" placeholder="New email" required>
+						<label for="new_email">New email:</label>						<?php						require_once( dirname(__FILE__).'/db_connect.php');						$stmt111 = $mysqli->prepare("SELECT email FROM users WHERE id=? AND deleted = 0");						if($stmt111){							$stmt111->bind_param("i", $_SESSION['id']);							$stmt111->execute();							$stmt111->bind_result($email);							$stmt111->fetch();							$stmt111->close();						}else{							echo $mysqli->error;						}						?>
+						<input name="new_email" value="<?php if(isset($email)){echo $email;}?>" type="text" class="form-control" id="new_email" placeholder="New email" required>
 					</div>
 				</div>
 				<div class="row">
