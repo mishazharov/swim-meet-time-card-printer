@@ -62,8 +62,12 @@
     								<input type="text" class="form-control" 
     								<?php 
     								if(isset($_COOKIE['username'])){
-    									$name_zz = htmlspecialchars($_COOKIE['username']);
-    									echo "value='".$name_zz."' "; 
+										$var = $_COOKIE['username'];
+										if(filter_var($var, FILTER_VALIDATE_EMAIL)){//Checks if it should look for email or name
+											$name_zz = htmlspecialchars($_COOKIE['username']);
+											echo "value='".$name_zz."' "; 
+										}
+
     								}
     								?>
     								name="username" id="username" placeholder="Email" required>

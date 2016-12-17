@@ -105,9 +105,9 @@
 								<div class="row">
 									<?php if(!empty($relay_letter)){?>
 									<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<label class="radio"><input required type="radio" <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==0)echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
-										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==1)echo "checked='checked' ";?> type="radio" value="1" name="relay_letter">B Relay</label>
-										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter==2)echo "checked='checked' ";?> type="radio" name="relay_letter" value="2">C Relay</label>
+										<label class="radio"><input required type="radio" <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="A")echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
+										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="B")echo "checked='checked' ";?> type="radio" value="1" name="relay_letter">B Relay</label>
+										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="C")echo "checked='checked' ";?> type="radio" name="relay_letter" value="2">C Relay</label>
 									</div>
 								<?php }?>
 								</div>
