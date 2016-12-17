@@ -4,6 +4,20 @@ $(document).ready(function(){
 	}
 	$('.timecard_widget_select').trigger('change');
 });
+$("#timecard_widget_time").blur(function(){
+	
+	var re = new RegExp(/^\d*\.\d*$/);
+	var time = $("#timecard_widget_time").val();
+	console.log(String(time));
+	if(re.test(String(time))){
+		console.log(2);
+		time *= 1000;
+	    var d=new Date(time);
+		$("#timecard_widget_time").val(minTwoDigits(d.getUTCMinutes())+"."+minTwoDigits(d.getUTCSeconds())+"."+(String(d.getUTCMilliseconds()).substring(0,2)));
+	}else{
+		console.log(3);
+	}
+});
 function add_user(){
 	var array = $("#add_widget_name").val().split(",");
 	var arrayLength = array.length;
@@ -456,4 +470,9 @@ function first_login(elem){
 			}
 		}
 	);
+}
+
+//From: http://stackoverflow.com/a/8513064
+function minTwoDigits(n) {
+  return (n < 10 ? '0' : '') + n;
 }

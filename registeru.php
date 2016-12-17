@@ -30,7 +30,7 @@
 					</div>
 					";
 				}
-				help("To register, enter information in the following format: FirstName.LastName", true);
+				help("To register, enter your name in the following format: FirstName.LastName", true);
 				?>
 				<div class='row'>
 					<div class='col-md-10 col-md-offset-4 col-sm-12 bottom1'>
@@ -45,14 +45,7 @@
 							?>
 							>
 								<label class="control-label" for="username">Username</label>
-    								<input type="text" class="form-control" 
-    								<?php 
-    								if(isset($_COOKIE['username'])){
-    									$name_zz = htmlspecialchars($_COOKIE['username']);
-    									echo "value='".$name_zz."' "; 
-    								}
-    								?>
-    								name="username" id="username" placeholder="FirstName.LastName" required>
+    								<input type="text" class="form-control" name="username" id="username" placeholder="FirstName.LastName" required>
 							</div>
 							<button type="submit" class="btn btn-default">Register</button>
 						</form>

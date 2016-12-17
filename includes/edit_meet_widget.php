@@ -10,7 +10,7 @@
 	</div>
 	<?php 
 	require_once(dirname(__FILE__).'/db_connect.php');
-	$stmt1 = $mysqli->prepare("SELECT id, name, type, date, length, active FROM meets WHERE deleted=0");
+	$stmt1 = $mysqli->prepare("SELECT id, name, type, date, length, active FROM meets WHERE deleted=0 AND date > CURDATE()");
 	$stmt1->execute();
 	$stmt1->store_result();
 	$stmt1->bind_result($id, $name, $type, $date, $length, $active);
