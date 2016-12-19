@@ -82,7 +82,7 @@ if(permission_captain($_SESSION['rank'])){//If you are a captain and you want to
 		$f_name .= $u_name.".";
 	}
 }else{
-	$f_name = $_SESSION['id'];//Otherwise your id is used
+	$f_name = $_SESSION['id'].".";//Otherwise your id is used
 }
 
 $stmt = $mysqli->prepare("UPDATE timecards SET name=?, stroke=?, length=?, event=?, time=?, created_by=?, division=?, competes_with=?, relay_letter=? WHERE id=?");

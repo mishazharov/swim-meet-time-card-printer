@@ -13,3 +13,6 @@ Deny from all
 <Files "edit_meet_type_widget.php">
     Allow from all
 </Files>
+<Files "edit_timecard_widget.php">
+    Allow from all
+</Files>

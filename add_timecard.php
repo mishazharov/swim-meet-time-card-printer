@@ -51,7 +51,7 @@ foreach($events as $temp){
 	}
 }
 $f_name = "";
-if($_SESSION['rank'] >= 1){
+if(permission_captain($_SESSION['rank'])){
 	foreach($_POST['swimmer_id'] as $u_name){
 		$f_name .= $u_name.".";
 	}
@@ -60,9 +60,9 @@ if($_SESSION['rank'] >= 1){
 		echo "Only captains can make relays...";
 		die();
 	}
-	$f_name = $_SESSION['id'];
+	$f_name = $_SESSION['id'].".";
 }
-$stmt = $mysqli->prepare("REPLACE INTO timecards (name, stroke, length, event, time, created_by, meet_id, division, competes_with, relay_letter, type, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
+$stmt = $mysqli->prepare("INSERT INTO timecards (name, stroke, length, event, time, created_by, meet_id, division, competes_with, relay_letter, type, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
 if(!isset($_POST['relay_letter'])){$_POST['relay_letter']='';}
 if($_POST['relay_letter']!=''){
 	switch($_POST['relay_letter']){
@@ -84,8 +84,13 @@ if(!isset($_POST['time'])){
 $stmt->bind_param("siiisiiiisi", $f_name, $stroke, $length, $event, $_POST['time'], $_SESSION['id'], $_POST['meet_id'], $division, $competes_with, $_POST['relay_letter'], $type);
 $stmt->execute();
 if($mysqli->errno === 1062){
-	echo "This event already exists, if you would like to edit it please see the edit timecard section";
-	die();
+	$stmt->close();
+	$stmt = $mysqli->prepare("UPDATE timecards SET time=?,deleted=0 WHERE name = ? AND event=? AND meet_id=?");
+	$stmt->bind_param("ssii",$_POST['time'],$f_name,$event,$_POST['meet_id']);
+	$stmt->execute();
+	$stmt->close();
+	//echo "This event already exists, if you would like to edit it please see the edit timecard section";
+	//die();
 }
 echo "1";
 ?>

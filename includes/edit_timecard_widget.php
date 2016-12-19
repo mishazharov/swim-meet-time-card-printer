@@ -1,5 +1,18 @@
+<?php
+if(isset($_GET['update'])){
+	edit_timecard_widget_whole();
+	die();
+}
+?>
+
 <div id="edit_timecard_widget_whole">
-	<h2 class="text-center">Edit/View <?php if($_SESSION['rank']==0)echo "your"; if($_SESSION['rank']==1)echo "your divisions"; if($_SESSION['rank']>=2)echo "all";?> timecards</h2>
+	<?php edit_timecard_widget_whole();?>
+</div>
+<?php
+function edit_timecard_widget_whole(){
+	global $mysqli;
+?>
+<h2 class="text-center">Edit/View <?php if($_SESSION['rank']==0)echo "your"; if($_SESSION['rank']==1)echo "your divisions"; if($_SESSION['rank']>=2)echo "all";?> timecards</h2>
 	<?php
 		require_once(dirname(__FILE__).'/functions.php');
 		help("Here you can edit or delete timecards, if they have already been printed you will have to talk to your Captain in order to change something. These timecards are not arranged in order.", false);
@@ -83,7 +96,7 @@
 									$stmt2->bind_result($swimmer_name, $swimmer_id);
 									foreach($timecard_name as $simple_id){
 										if(empty($simple_id))continue;
-										if(!empty($relay_letter) && $_SESSION['rank'] < 1){
+										if(!empty($relay_letter) && !permission_captain($_SESSION['rank'])){
 											echo '<select disabled name="swimmer_id[]" class="bottom2 form-control">';
 										}else{
 											echo '<select name="swimmer_id[]" class="bottom2 form-control">';
@@ -93,7 +106,7 @@
 											if($swimmer_id == $simple_id){
 												$swimmer_name = name($swimmer_name);
 												echo "<option selected value='$simple_id'>$swimmer_name</option>";
-											}else if($_SESSION['rank'] > 0){
+											}else if(permission_manager($_SESSION['rank'])){
 												echo "<option value='$swimmer_id'>$swimmer_name</option>";
 											}
 										}
@@ -105,9 +118,9 @@
 								<div class="row">
 									<?php if(!empty($relay_letter)){?>
 									<div class="text-center bottom2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<label class="radio"><input required type="radio" <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="A")echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
-										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="B")echo "checked='checked' ";?> type="radio" value="1" name="relay_letter">B Relay</label>
-										<label class="radio"><input <?php if($_SESSION['rank'] < 1)echo "disabled ";if($relay_letter=="C")echo "checked='checked' ";?> type="radio" name="relay_letter" value="2">C Relay</label>
+										<label class="radio"><input required type="radio" <?php if(!permission_captain($_SESSION['rank']))echo "disabled ";if($relay_letter=="A")echo "checked='checked' ";?> value="0" name="relay_letter">A Relay</label>
+										<label class="radio"><input <?php if(!permission_captain($_SESSION['rank'])){echo "disabled ";}if($relay_letter=="B"){echo "checked='checked' ";}?> type="radio" value="1" name="relay_letter">B Relay</label>
+									<label class="radio"><input <?php if(!permission_captain($_SESSION['rank'])){echo "disabled ";}if($relay_letter=="C"){echo "checked='checked' ";}?> type="radio" name="relay_letter" value="2">C Relay</label>
 									</div>
 								<?php }?>
 								</div>
@@ -116,7 +129,7 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<?php
-											if(!empty($relay_letter) && !permission_manager($_SESSION['rank'])){
+											if(!empty($relay_letter) && !permission_captain($_SESSION['rank'])){
 												echo '<select disabled onchange="detect_relay(this, false)" name="event" class="form-control">';
 											}else{
 												echo '<select onchange="detect_relay(this, false)" name="event" class="form-control">';
@@ -166,6 +179,7 @@
 			<hr class="hidden-lg hidden-md">
 	<?php
 			echo ob_get_clean();
+			$stmt1->close();
 		}
+	}
 	?>
-</div>

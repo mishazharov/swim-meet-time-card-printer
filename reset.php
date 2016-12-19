@@ -47,7 +47,7 @@
 				if(!isset($reset) && PASS_RESET){
 					echo '<div class="row bottom2">';
 					echo '	<div class="bottom2 col-lg-3 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-xs-12">';
-					echo '		<input class="form-control" type="text" placeholder="Username" name="username">';
+					echo '		<input class="form-control" type="text" placeholder="Email" name="username">';
 					echo '	</div>';
 					echo '	<div class="col-lg-2 col-md-8 col-sm-2 col-xs-12">';
 					echo '		<button class="btn btn-primary form-control" type="submit">Reset password</button>';
