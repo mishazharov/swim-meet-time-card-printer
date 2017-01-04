@@ -106,7 +106,7 @@ function edit_timecard_widget_whole(){
 											if($swimmer_id == $simple_id){
 												$swimmer_name = name($swimmer_name);
 												echo "<option selected value='$simple_id'>$swimmer_name</option>";
-											}else if(permission_manager($_SESSION['rank'])){
+											}else if(permission_captain($_SESSION['rank'])){
 												echo "<option value='$swimmer_id'>$swimmer_name</option>";
 											}
 										}
@@ -163,7 +163,7 @@ function edit_timecard_widget_whole(){
 							</div>
 							<div class="bottom2 col-lg-3 col-md-4 col-sm-12 col-xs-12">
 								
-								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human();?>" class="form-control" placeholder="Entry time as <?php echo timecard_regex_human();?> (blank for no time)" name="time">
+								<input value="<?php echo $timecard_time; ?>" <?php if(!empty($relay_letter) && $_SESSION['rank'] < 1)echo "disabled";?> type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human();?>" class="form-control timecard_time_input" placeholder="Entry time as <?php echo timecard_regex_human();?> (blank for no time)" name="time">
 							</div>
 							<div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 text-center">
 								<div class="row">

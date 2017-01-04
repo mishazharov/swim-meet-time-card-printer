@@ -4,16 +4,16 @@ $(document).ready(function(){
 	}
 	$('.timecard_widget_select').trigger('change');
 });
-$("#timecard_widget_time").blur(function(){
+$(".timecard_time_input").blur(function(){
 	
 	var re = new RegExp(/^\d*\.\d*$/);
-	var time = $("#timecard_widget_time").val();
+	var time = $(this).val();
 	console.log(String(time));
 	if(re.test(String(time))){
 		console.log(2);
 		time *= 1000;
 	    var d=new Date(time);
-		$("#timecard_widget_time").val(minTwoDigits(String(d.getUTCMinutes()))+"."+minTwoDigits(String(d.getUTCSeconds()))+"."+(minTwoDigits(String(d.getUTCMilliseconds())).substring(0,2)));
+		$(this).val(minTwoDigits(String(d.getUTCMinutes()))+"."+minTwoDigits(String(d.getUTCSeconds()))+"."+(minTwoDigits(String(d.getUTCMilliseconds())).substring(0,2)));
 	}else{
 		console.log(3);
 	}

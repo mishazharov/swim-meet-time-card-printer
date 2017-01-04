@@ -120,7 +120,7 @@
 						<div class="row bottom2">
 							<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
 								<div class="row">
-									<input id="timecard_widget_time" type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human()?>" class="form-control" placeholder="Entry time as <?php echo timecard_regex_human();?> or SS.MS (blank for no time)" name="time">
+									<input id="timecard_widget_time" type="text" pattern="<?php echo timecard_regex_client();?>" title="Time: <?php echo timecard_regex_human()?>" class="form-control timecard_time_input" placeholder="Entry time as <?php echo timecard_regex_human();?> or SS.MS (blank for no time)" name="time">
 								</div>
 							</div>
 						</div>
