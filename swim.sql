@@ -35,16 +35,6 @@ CREATE TABLE `meet_events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `meet_events`
---
-
-LOCK TABLES `meet_events` WRITE;
-/*!40000 ALTER TABLE `meet_events` DISABLE KEYS */;
-INSERT INTO `meet_events` VALUES (3,'Sprint Meet (2017)','[{\"event\":\"201\",\"length\":\"100\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"202\",\"length\":\"100\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"7\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"8\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"9\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"10\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"33\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"34\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"35\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"36\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"25\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"26\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"27\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"28\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"63\",\"length\":\"400\",\"stroke\":\"6\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"64\",\"length\":\"400\",\"stroke\":\"6\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"43\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"44\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"45\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"46\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"19\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"20\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"21\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"22\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"23\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"24\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"59\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"60\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"61\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"62\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"29\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"30\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"0\",\"competes_with\":\"1\"}]',0),(11,'A Meet (2017)','[{\"event\":\"33\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"34\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"35\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"36\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"1\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"2\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"3\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"4\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"5\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"6\",\"length\":\"200\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"7\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"8\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"9\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"10\",\"length\":\"50\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"11\",\"length\":\"100\",\"stroke\":\"0\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"12\",\"length\":\"100\",\"stroke\":\"0\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"13\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"14\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"15\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"16\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"17\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"18\",\"length\":\"100\",\"stroke\":\"2\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"19\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"20\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"21\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"22\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"23\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"24\",\"length\":\"50\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"25\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"26\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"27\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"28\",\"length\":\"200\",\"stroke\":\"6\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"29\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"30\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"0\",\"competes_with\":\"1\"}]',0),(13,'B Meet (2017)','[{\"event\":\"201\",\"length\":\"100\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"202\",\"length\":\"100\",\"stroke\":\"6\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"31\",\"length\":\"200\",\"stroke\":\"4\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"32\",\"length\":\"200\",\"stroke\":\"4\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"33\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"34\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"35\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"36\",\"length\":\"50\",\"stroke\":\"0\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"37\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"38\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"39\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"40\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"41\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"42\",\"length\":\"100\",\"stroke\":\"1\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"43\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"44\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"45\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"46\",\"length\":\"50\",\"stroke\":\"2\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"47\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"48\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"49\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"50\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"51\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"52\",\"length\":\"100\",\"stroke\":\"4\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"53\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"54\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"55\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"56\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"57\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"58\",\"length\":\"100\",\"stroke\":\"3\",\"division\":\"0\",\"competes_with\":\"1\"},{\"event\":\"59\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"1\",\"competes_with\":\"0\"},{\"event\":\"60\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"1\",\"competes_with\":\"1\"},{\"event\":\"61\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"2\",\"competes_with\":\"0\"},{\"event\":\"62\",\"length\":\"200\",\"stroke\":\"5\",\"division\":\"2\",\"competes_with\":\"1\"},{\"event\":\"63\",\"length\":\"400\",\"stroke\":\"6\",\"division\":\"0\",\"competes_with\":\"0\"},{\"event\":\"64\",\"length\":\"400\",\"stroke\":\"6\",\"division\":\"0\",\"competes_with\":\"1\"}]',0);
-/*!40000 ALTER TABLE `meet_events` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `meets`
 --
 
@@ -60,7 +50,7 @@ CREATE TABLE `meets` (
   `deleted` int(2) NOT NULL DEFAULT '0' COMMENT '0=not deleted',
   `active` int(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,8 +65,9 @@ CREATE TABLE `reset_password` (
   `user_id` int(5) NOT NULL COMMENT 'The id of the user in the users table',
   `timestamp` int(20) NOT NULL COMMENT 'timestamp of request',
   `token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'token for verification',
+  `reset` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +96,7 @@ CREATE TABLE `timecards` (
   UNIQUE KEY `id_2` (`id`),
   KEY `id` (`id`),
   KEY `id_3` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,18 +119,8 @@ CREATE TABLE `users` (
   `setup` int(2) NOT NULL DEFAULT '0' COMMENT '0=Never logged in, 1=logged in before',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Misha.Dev',2,1,4,'$2y$10$JsHayikFfxHXH4pnhLpTSuTPAvdYojBAKVtE5cHlJ2mvp8HCZQKzy',-1,0,'mishazharov1@gmail.com',3);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping events for database 'swim'
@@ -158,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-05 19:29:59
+-- Dump completed on 2017-01-09 19:32:54

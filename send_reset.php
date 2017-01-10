@@ -6,7 +6,7 @@
 		die();
 	}
 	require_once(dirname(__FILE__).'/includes/db_connect.php');	if(!PASS_RESET){echo "Password resets are not enabled at this time"; die();}	if(!extension_loaded('openssl')){echo "OpenSSL not installed. Password resets are not available."; die();}
-	$stmt = $mysqli->prepare("SELECT id FROM users WHERE deleted=0 AND email=?");
+	$stmt = $mysqli->prepare("SELECT id FROM users WHERE deleted=0 AND email LIKE ?");
 	$var = $_POST['username'];
 	$stmt->bind_param("s", $var);
 	$stmt->execute();
