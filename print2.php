@@ -1,9 +1,12 @@
 <?php
+
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('log_errors', 1);
 ini_set("error_log", "error_log");
-require_once( dirname(__FILE__).'/includes/functions.php');require_once( dirname(__FILE__).'/fpdf/fpdf.php');require_once( dirname(__FILE__).'/fpdi/fpdi.php');
+require_once( dirname(__FILE__).'/includes/functions.php');
+require_once(dirname(__FILE__).'/includes/db_connect.php');require_once( dirname(__FILE__).'/fpdf/fpdf.php');require_once( dirname(__FILE__).'/fpdi/fpdi.php');
 
 $pdf = new FPDI();
 $pageCount = $pdf->setSourceFile('timecard.pdf');
@@ -56,8 +59,11 @@ foreach($tmptmp as $u_t){
 	$stmt->bind_param('ii', $_GET['id'], $u_t->event);
 	$stmt->execute();
 	$stmt->bind_result($name, $time, $relay_letter, $event);
-	
-	while($stmt->fetch()){
+	$ok = true;
+	if(isset($_SESSION['rank']) && !permission_manager($_SESSION['rank']) && ($_SESSION['division'] != $u_t->division || $_SESSION['competes_with'] != $u_t->competes_with)){
+		$ok = false;
+	}
+	while($stmt->fetch() && $ok){
 		if(empty($name))continue;
 		if(empty($event))continue;
 

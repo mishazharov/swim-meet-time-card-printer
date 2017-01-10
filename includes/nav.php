@@ -41,11 +41,11 @@
 								}
 								echo "</ul>";
 								echo "</li>";
-								if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="print.php" && permission_manager($_SESSION['rank'])){
-									echo "<li class='active'><a href='print.php'>Print Timecards</a></li>";
-								}else if(permission_manager($_SESSION['rank'])){
-									echo "<li><a href='print.php'>Print Timecards</a></li>";
-								}
+							}
+							if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="print.php" && permission_captain($_SESSION['rank'])){
+								echo "<li class='active'><a href='print.php'>Print Timecards</a></li>";
+							}else if(permission_captain($_SESSION['rank'])){
+								echo "<li><a href='print.php'>Print Timecards</a></li>";
 							}
 						}
 						if(strtok(basename($_SERVER["REQUEST_URI"]), '?')=="settings.php"){
