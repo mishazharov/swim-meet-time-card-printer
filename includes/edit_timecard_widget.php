@@ -90,7 +90,12 @@ function edit_timecard_widget_whole(){
 						<div class="row">
 							<div class="bottom2 col-lg-3 col-md-4 col-sm-12 col-xs-12">
 								<?php
-									$stmt2 = $mysqli->prepare("SELECT name, id FROM users WHERE deleted=0 AND rank < 2");
+									if(permission_manager($_SESSION['rank'])){
+										$stmt2 = $mysqli->prepare("SELECT name, id FROM users WHERE deleted=0 AND rank < 2");
+									}else if(permission_captain($_SESSION['rank'])){
+										$stmt2 = $mysqli->prepare("SELECT name, id FROM users WHERE deleted=0 AND division=? AND competes_with=?");
+										$stmt2->bind_param("ii", $_SESSION['division'], $_SESSION['competes_with']);
+									}
 									$stmt2->execute();
 									$stmt2->store_result();
 									$stmt2->bind_result($swimmer_name, $swimmer_id);
