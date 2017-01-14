@@ -95,6 +95,9 @@ function edit_timecard_widget_whole(){
 									}else if(permission_captain($_SESSION['rank'])){
 										$stmt2 = $mysqli->prepare("SELECT name, id FROM users WHERE deleted=0 AND division=? AND competes_with=?");
 										$stmt2->bind_param("ii", $_SESSION['division'], $_SESSION['competes_with']);
+									}else{
+										$stmt2 = $mysqli->prepare("SELECT name, id FROM users WHERE deleted=0 AND division=? AND competes_with=?");
+										$stmt2->bind_param("ii", $_SESSION['division'], $_SESSION['competes_with']);
 									}
 									$stmt2->execute();
 									$stmt2->store_result();
