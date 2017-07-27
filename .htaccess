@@ -1,8 +1,0 @@
-Options -Indexes
-#RewriteEngine on
-#RewriteCond %{HTTP_HOST}       !swim\.ufacademy\.org$
-#RewriteRule [swim]?(.*) http://swim.ufacademy.org/$1 [R=301,L]
-#AuthType Basic
-#AuthName "Swim"
-#AuthUserFile "/home/ursula/.htpasswds/public_html/swim/passwd"
-#require valid-user
