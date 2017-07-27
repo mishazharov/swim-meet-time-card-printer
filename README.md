@@ -5,3 +5,4 @@ In order to get this website running you must first change the constants in /inc
 Known bugs:
 
 Will not work in Safari (iPhone or computer based)
+In order to use a gmail account to send emails, you have to enable 'less secure apps' in google settings
