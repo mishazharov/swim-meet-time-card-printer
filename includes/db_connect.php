@@ -9,7 +9,7 @@ $mysql_pass = '';
 define('SWIM_DB', 'swim');//the timecards, etc
 define('MAIN_DB', 'main');//For admin auth
 define('ADMIN_AUTH', false);//Whether to use the second DB for admin auth
-define('PASS_RESET', true);//To disable password reset
+define('PASS_RESET', false);//To disable password reset
 define('SMTP_USER', "");//The username used to log into the SMTP server
 define('SMTP_PASS', "");//The password to log into the SMPT server
 define('SMTP_NAME', "");//Common name eg. Swim Website or something like that
