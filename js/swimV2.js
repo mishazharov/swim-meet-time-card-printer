@@ -477,7 +477,19 @@ function first_login(elem){
 		}
 	);
 }
-
+function delete_all_users(){
+	if(confirm("This will delete all non-admin users, timecards, and swim meets from the database. This will NOT remove meet events. It is not possible to undo this action")){
+		$.post("delete_all_users.php", "id=0",
+			function(data){
+				if(data==1){
+					alert("Reset successful!");
+				}else{
+					alert("Reset not successful!");
+				}
+			}
+		);
+	}
+}
 //From: http://stackoverflow.com/a/8513064
 function minTwoDigits(n) {
   return (n < 10 ? '0' : '') + n;

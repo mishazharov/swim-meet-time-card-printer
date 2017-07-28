@@ -90,10 +90,17 @@ foreach($tmptmp as $u_t){
 		foreach($name as $n){
 			if($n == "")continue;
 			$pdf->SetXY(30 + $x_off, 58.5 + $y_off + $further_y_disp);
-			$s_name = explode(".", $u_arr_1[$n]->name);
-			$pdf->Write(0, $s_name[1]);
+			if($n != -1){	
+				$s_name = explode(".", $u_arr_1[$n]->name);
+			}
+			//Edge case for -1 name
+			if($n != -1){
+				$pdf->Write(0, $s_name[1]);
+			}
 			$pdf->SetXY(68 + $x_off, 58.5 + $y_off + $further_y_disp);
-			$pdf->Write(0, $s_name[0]);
+			if($n != -1){
+				$pdf->Write(0, $s_name[0]);
+			}
 			$further_y_disp += 5;
 		}
 		

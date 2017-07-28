@@ -16,8 +16,7 @@
 	";
 	
 	help("Here you can view team members and edit relevant information, captains will only be able to see and edit information from their division. Information is updated as soon as you change an option.
-			If there is an error updating the entry, the box should light up red, otherwise the table will update itself. Also, you can click on titles to collapse and show divisions, and you can click on usernames to display additional information.", false);
-	
+			If there is an error updating the entry, the box should light up red, otherwise the table will update itself. Also, you can click on titles to collapse and show divisions, and you can click on usernames to display additional information", false);
 	//Unknown swimmers
 	list_team(-1, -1, -1, $mysqli);
 	
@@ -80,15 +79,15 @@
 	
 	function list_team($division, $competes_with, $rank, $mysqli){
 		if(!($rank >= 2) && $division != -1){
-			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE division = ? AND competes_with = ? AND rank = ? AND deleted = 0 AND rank < 3 ORDER BY grade ASC, name ASC");
+			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE division = ? AND competes_with = ? AND rank = ? AND deleted = 0 AND rank < 3 ORDER BY name ASC");
 			$stmt->bind_param("iii", $division, $competes_with, $rank);
 		}else if($division == -1){
-			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE (division = ? OR grade = ?) AND deleted = 0 AND rank < 3 ORDER BY grade ASC, name ASC");
+			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE (division = ? OR grade = ?) AND deleted = 0 AND rank < 3 ORDER BY name ASC");
 			//echo $mysqli->error;
 			$var = -1;
 			$stmt->bind_param("ii", $var, $var);
 		}else{
-			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE rank = ? AND deleted = 0 AND rank < 3 ORDER BY grade ASC, name ASC");
+			$stmt = $mysqli->prepare("SELECT name, id, grade, competes_with, rank FROM users WHERE rank = ? AND deleted = 0 AND rank < 3 ORDER BY name ASC");
 			$stmt->bind_param("i", $rank);
 		}
 		$stmt->execute();

@@ -1,5 +1,8 @@
 <?php
 require_once(dirname(__FILE__).'/includes/functions.php');
+//Just so all users are added
+ignore_user_abort(true);
+set_time_limit(600);
 if(!(isset($_SESSION['name']) && isset($_SESSION['division']) && isset($_SESSION['competes_with']) && isset($_SESSION['rank']))){
 	echo '0';
 	die();
@@ -54,12 +57,9 @@ foreach($usernames as $username){
 
 	$rank = htmlspecialchars($_POST['rank']);
 	$grade = htmlspecialchars($_POST['grade']);
-	$cost = [
-		'cost' => 12,
-	];
 	$name = strtolower($name);
 	$name = ucwords($name,".");
-	$password = password_hash($name, PASSWORD_DEFAULT, $cost);
+	$password = "cantloginwithme";
 	
 	if(!($stmt->bind_param("siiisi", $name, $division, $competes_with, $rank, $password, $grade))){
 		echo "0";

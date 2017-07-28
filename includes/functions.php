@@ -8,6 +8,7 @@ ini_set("error_log", "error_log");
 define('URL', "#");//Url to home site in case this is not the main website
 define('SITE_NAME', "Swim Site");//For the nav bar etc.
 define('TIMEZONE', "America/Toronto");
+define('BOOTSTRAP_VERSION', "3.3.7");//3.3.7 or 3.3.6
 $whitelist = array("settings.php", "logout.php", "change_pass.php", "new_email.php", "sconfirm.php");
 if(isset($_SESSION['setup']) && $_SESSION['setup'] != 3){
 	foreach($whitelist as $a){

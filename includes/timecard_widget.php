@@ -69,6 +69,7 @@
 											}
 											$stmt1->execute();
 											$stmt1->bind_result($swimmer_id, $swimmer_name);
+											echo "<option value='-1'> --Empty-- </option>";
 											while($stmt1->fetch()){
 												echo "<option value='$swimmer_id'>".name($swimmer_name)."</option>";
 											}

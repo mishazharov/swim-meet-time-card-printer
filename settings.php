@@ -17,12 +17,16 @@ require_once(dirname(__FILE__).'/includes/functions.php');
 		<div class='container'>
 			<div class='jumbotron'>
 				<h1 class="text-center">Settings</h1>
-				<div style="text-align:center;" class="row bottom3">
-					<a class="text-center" data-toggle="collapse" href="#settings_help">Help?</a>
+				<?php
+				help("Here you can change your email and password. Please enter a valid email because it will be used to reset your password. Users that are logging in for the first time must update both email and password. Also Admins can reset the website for a new swim season by clicking 'Reset users and meets'", false);
+				if(permission_admin($_SESSION['rank'])){
+				?>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12 bottom3" style="text-align:center;">
+						<button type="submit" onclick="delete_all_users();return false;" class="btn btn-danger">Reset users and meets</button>
 				</div>
-				<div id="settings_help" class="row bottom3 collapse">
-						<p class="text-left">Here you can change your email and password. Please enter a valid email because it will be used to reset your password. Users that are logging in for the first time must update both email and password.</p>
-				</div>
+				<?php
+				}
+				?>
 				<div class="row bottom4">
 					<div class="col-lg-12">
 					<?php
