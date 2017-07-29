@@ -4,5 +4,5 @@ In order to get this website running you must first change the constants in /inc
 
 Known bugs:
 
-Will not work in Safari (iPhone or computer based)
+Will not work in Safari (iPhone or computer based) Update July 2017: Works on iPhone 5s (maybe this issue resolved itself when updating bootstrap)
 In order to use a gmail account to send emails, you have to enable 'less secure apps' in google settings
