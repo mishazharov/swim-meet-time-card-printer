@@ -44,7 +44,7 @@
 					</div>
 					";
 				}
-				help("On first login your username should be Firstname.Lastname, after setting up your account, it should be your email.", true);
+				help("If you don't have an account, set one up using the link under the login page", false);
 				?>
 				<div class='row'>
 					<div class='col-md-10 col-md-offset-2 col-sm-12 bottom1'>
